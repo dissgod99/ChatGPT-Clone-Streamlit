@@ -45,13 +45,13 @@ user_prompt = st.chat_input()
 
 if user_prompt is not None:
     st.session_state.messages.append(
-         {"role": "assistant",
+         {"role": "user",
          "content": user_prompt}
     )
     with st.chat_message("user"):
         st.write(user_prompt)
     
-    if st.session_state.messages[-1]["role"] == "assistant":
+    if st.session_state.messages[-1]["role"] != "assistant":
         with st.chat_message("assistant"):
             with st.spinner("Loading ..."):
                 ai_response = llm_chain.predict(question=user_prompt)
